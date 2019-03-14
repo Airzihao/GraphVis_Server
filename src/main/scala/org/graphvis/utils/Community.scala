@@ -13,14 +13,19 @@ class Point(xc: Double = 0, yc: Double = 0){
   var y = yc;
 }
 
-class Community (nodeList: Array[Point] = Array[Point](), name: String = null){
+class Community (nodeList: Array[Node] = Array[Node](), name: String = null){
 
-  var vertexs: Array[vertex] = nodeList
+  var nodes: Array[Node] = nodeList
   var groupName = name
   var center: Point = new Point(0,0)
   val dirVec:Array[Vector] = getDirectionVector();
 
-  val outlinePoint: Array[Point] = _;
+  var outlinePoint: Array[Point] = new Array[Point](12);
+  for (i <- 0 to 11){
+    outlinePoint(i) = new Point()
+  }
+
+
   def getCenter(): Unit ={
     var sum_x : Double = 0
     var sum_y : Double = 0
@@ -46,6 +51,27 @@ class Community (nodeList: Array[Point] = Array[Point](), name: String = null){
 
     return dirVec
   }
+
+
+  def getOutlinePoint(): Array[Point] ={
+    getCenter()
+    var directionLength : Array[Double] = new Array[Double](12)
+    for(node <- nodes){
+      node.getRelativeCoordinate(center)
+      for(i <- 0 to 11){
+        val unit_vector = dirVec(i)
+        val length = (node.rel_x*unit_vector.x + node.rel_y*unit_vector.y)
+        if (length > directionLength(i)) directionLength(i) = length
+      }
+    }
+
+    for(i <- 0 to 11) {
+      outlinePoint(i).x = directionLength(i)*dirVec(i).x+center.x
+      outlinePoint(i).y = directionLength(i)*dirVec(i).y+center.y
+    }
+    return outlinePoint
+  }
+
 
 
 }
