@@ -46,7 +46,7 @@ class BaseTest{
 
   @Test
   def testReadFile(): Unit ={
-    val group = 0
+    val group = 11
     val filePath = "D:\\GitSpace\\GraphVis_Server\\src\\test\\scala\\data\\" + group
     val file=Source.fromFile(filePath)
     var nodeList = new ArrayBuffer[Node]()
@@ -62,7 +62,8 @@ class BaseTest{
     community.getOutlinePoint()
 
     for(item <- community.outlinePoint){
-      println(item.x,item.y)
+      println(item.x.toInt,item.y.toInt)
+
     }
 
 

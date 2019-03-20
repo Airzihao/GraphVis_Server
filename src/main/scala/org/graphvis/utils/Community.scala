@@ -20,8 +20,9 @@ class Community (nodeList: Array[Node] = Array[Node](), name: String = null){
   var center: Point = new Point(0,0)
   val dirVec:Array[Vector] = getDirectionVector();
 
-  var outlinePoint: Array[Point] = new Array[Point](12);
-  for (i <- 0 to 11){
+  var outlinePoint: Array[Point] = new Array[Point](36);
+
+  for (i <- 0 to 35){
     outlinePoint(i) = new Point()
   }
 
@@ -37,7 +38,7 @@ class Community (nodeList: Array[Node] = Array[Node](), name: String = null){
     center.y = sum_y/nodes.length
   }
 
-  def getDirectionVector(num: Int = 12): Array[Vector] ={
+  def getDirectionVector(num: Int = 36): Array[Vector] ={
 
     val unitRad = 2*math.Pi/num
     var dirVec: Array[Vector] = new Array[Vector](num)
@@ -55,17 +56,17 @@ class Community (nodeList: Array[Node] = Array[Node](), name: String = null){
 
   def getOutlinePoint(): Array[Point] ={
     getCenter()
-    var directionLength : Array[Double] = new Array[Double](12)
+    var directionLength : Array[Double] = new Array[Double](36)
     for(node <- nodes){
       node.getRelativeCoordinate(center)
-      for(i <- 0 to 11){
+      for(i <- 0 to 35){
         val unit_vector = dirVec(i)
         val length = (node.rel_x*unit_vector.x + node.rel_y*unit_vector.y)
-        if (length > directionLength(i)) directionLength(i) = length
+        if (length > directionLength(i)) directionLength(i) = length + 50
       }
     }
 
-    for(i <- 0 to 11) {
+    for(i <- 0 to 35) {
       outlinePoint(i).x = directionLength(i)*dirVec(i).x+center.x
       outlinePoint(i).y = directionLength(i)*dirVec(i).y+center.y
     }
