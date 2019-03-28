@@ -1,7 +1,8 @@
 package org.graphvis.utils
 
-class Node (xc: Double = 0, yc: Double = 0, groupName: String = null){
+class Node (nId: String, xc: Double = 0, yc: Double = 0, groupName: String = null){
 
+  var id = nId;
   var x = xc;
   var y = yc;
   var rel_x = xc;
