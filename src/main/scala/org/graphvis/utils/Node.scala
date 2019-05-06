@@ -1,6 +1,6 @@
 package org.graphvis.utils
 
-class Node (nId: String, xc: Double = 0, yc: Double = 0, groupName: String = null){
+class Node (nId: Long, xc: Double = 0, yc: Double = 0, groupName: String = null){
 
   var id = nId;
   var x = xc;

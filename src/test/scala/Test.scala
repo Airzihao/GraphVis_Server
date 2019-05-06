@@ -44,30 +44,30 @@ class BaseTest{
 
   }
 
-  @Test
-  def testReadFile(): Unit ={
-    val group = 11
-    val filePath = "D:\\GitSpace\\GraphVis_Server\\src\\test\\scala\\data\\" + group
-    val file=Source.fromFile(filePath)
-    var nodeList = new ArrayBuffer[Node]()
-    for(line <- file.getLines)
-    {
-      val num1 = line.replace("(","").replace(")","").split(",")
-      val node = new Node(num1(0).toDouble,num1(1).toDouble,group.toString)
-      nodeList.append(node)
-    }
-    file.close
-
-    var community = new Community(nodeList.toArray)
-    community.getOutlinePoint()
-
-    for(item <- community.outlinePoint){
-      println(item.x.toInt,item.y.toInt)
-
-    }
-
-
-  }
+//  @Test
+//  def testReadFile(): Unit ={
+//    val group = 11
+//    val filePath = "D:\\GitSpace\\GraphVis_Server\\src\\test\\scala\\data\\" + group
+//    val file=Source.fromFile(filePath)
+//    var nodeList = new ArrayBuffer[Node]()
+//    for(line <- file.getLines)
+//    {
+//      val num1 = line.replace("(","").replace(")","").split(",")
+//      val node = new Node(num1(0).toLong,num1(1).toDouble,group.toString)
+//      nodeList.append(node)
+//    }
+//    file.close
+//
+//    var community = new Community(nodeList.toArray)
+//    community.getOutlinePoint()
+//
+//    for(item <- community.outlinePoint){
+//      println(item.x.toInt,item.y.toInt)
+//
+//    }
+//
+//
+//  }
 
 
 
